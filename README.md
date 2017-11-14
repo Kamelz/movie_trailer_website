@@ -1,2 +1,5 @@
-# ud036_StarterCode
-Source code for a Movie Trailer website.
+# movie_trailer_website
+A python script that generates a static website with your favorite movies.
+
+## Requirements
+
