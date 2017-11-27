@@ -129,17 +129,10 @@ movie_tile_content = '''
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
     <div class="col-xs-12">
-        <img src="https://yts.ag/assets/images/website/logo-imdb.svg" alt="IMDb Rating">
-        <span class="movie-info">{imdb_rate}</span>
-    </div>
-    <div class="col-xs-12">
-        <span class="glyphicon glyphicon-time movie-info">{duration}</span>
+        <span class="movie-info">{vote}</span>
     </div>
     <div class="col-xs-12">
         <span class="movie-info">{genre}</span>
-    </div>
-    <div class="col-xs-12">
-       <span class="movie-info"> Rate:{rate}</span>
     </div>
 </div>
 '''
@@ -151,20 +144,18 @@ def create_movie_tiles_content(movies):
     for movie in movies:
         # Extract the youtube ID from the url
         youtube_id_match = re.search(
-            r'(?<=v=)[^&#]+', movie.trailer_youtube_url)
+            r'(?<=v=)[^&#]+', movie.trailer())
         youtube_id_match = youtube_id_match or re.search(
-            r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
+            r'(?<=be/)[^&#]+', movie.trailer())
         trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                               else None)
 
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
-            genre=' | '.join(movie.genre),
-            duration=movie.duration,
-            rate=movie.rate,
-            movie_title=movie.title,
-            imdb_rate=movie.imdb_rate,
-            poster_image_url=movie.poster_image_url,
+            genre=' | '.join(movie.genres()),
+            movie_title=movie.title(),
+            vote=movie.vote_average(),
+            poster_image_url=movie.poster(),
             trailer_youtube_id=trailer_youtube_id
         )
     return content
