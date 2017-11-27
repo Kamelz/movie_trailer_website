@@ -1,4 +1,5 @@
 import tmdbsimple as tmdb
+import sys
 
 
 class Config():
@@ -17,12 +18,12 @@ class Config():
         """Return the movie database api key."""
         str = open('config.ini', 'r').read()  # Opens config.ini file.
 
-        if(str[0:8] != "API_KEY="):
+        if(str[0:8] != "API_KEY=" or str[8:None] == "" ):
             # Check if the api key constant is valid in config.ini.
-            print(str[1:8])
             error = "Invalid configurations, please make sure that you"
             error = error + "set your api key in config.ini"
             error = error + "file in this format 'API_KEY=XXXXXXX'."
             print(error)
+            sys.exit()
             return
         return str[8:None]  # Return the string after API_KEY= .
