@@ -7,7 +7,7 @@ A python script that generates a static website with your favorite movies.
  First let's install it by typing:
   ` pip install tmdbsimple ` 
 
- Visit [The movie database] (https://www.themoviedb.org/?_dc=1511726672) website and register a new account.
+ Visit [The movie database](https://www.themoviedb.org/?_dc=1511726672) website and register a new account.
  Login to your account.
  Choose settings from the dorp down menu on the right, then choose API on the left sidebar.
  Copy API Key and paste it in config.ini in `API_KEY`. 
